@@ -14,8 +14,8 @@ const PORT = process.env.PORT || 3001;
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get("/", (req,req)=>{
-    req.status(200).send("Server is running");
+app.get("/", (req,res)=>{
+    res.status(200).send("Server is running");
 })
 
 app.post("/send_mail", (req, res) => {
