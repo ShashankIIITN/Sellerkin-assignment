@@ -9,11 +9,14 @@ dotenv.config();
 
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get("/", (req,req)=>{
+    req.status(200).send("Server is running");
+})
 
 app.post("/send_mail", (req, res) => {
 
@@ -47,5 +50,5 @@ app.post("/send_mail", (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on ${PORT}`);
 });
