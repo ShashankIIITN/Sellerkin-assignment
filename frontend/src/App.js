@@ -1,14 +1,18 @@
 import './App.css';
 import { useState } from 'react';
+import Loader from './Loader';
 
 const url = process.env.REACT_APP_URL || "http://localhost:3001";
 
 function App() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [isSending, setisSending] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setisSending(true);
 
     try {
       const data = await fetch(`${url}/send_mail`, {
@@ -29,11 +33,11 @@ function App() {
         alert("failed to send the message!" + jsonData.msg);
       }
 
-
-
     } catch (err) {
       console.log(err);
       alert(err);
+    }finally{
+      setisSending(false);
     }
 
   };
@@ -63,6 +67,7 @@ function App() {
         <button type="submit" >
           Submit
         </button>
+      {isSending && <Loader />}
       </form>
     </div>
   );
