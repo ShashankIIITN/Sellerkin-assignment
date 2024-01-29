@@ -1,0 +1,31 @@
+.searchboxfilter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height:3rem;
+    width: 50%;
+    background-color: rgba(251, 251, 251, 0.616);
+    gap: 5px;
+    min-width: 300px;
+    padding: 0.5% 1%;
+
+    button {
+        height: 70%;
+        width: 20%;
+        padding: 0rem 2%;
+        font-size: 1rem;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    :hover {
+        text-decoration-line: underline;
+        color: rgb(78, 82, 80);
+    }
+
+    #search {
+        height: 60%;
+        width: 70%;
+        
+    }
+}

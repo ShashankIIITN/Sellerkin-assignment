@@ -1,0 +1,36 @@
+.frame {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    
+
+}
+
+#loader {
+    width: 50px;
+    height: 50px;
+    
+    border-radius: 50%;
+    border: 5px solid #fdf0d5;
+    border-top: 5px solid #c1121f;
+    border-left: 5px solid #c1121f;
+    animation: load 2s ease-in-out infinite forwards;
+}
+
+@keyframes load {
+    0% {
+        transform: rotate(0);
+    }
+
+    50% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(720deg);
+    }
+}

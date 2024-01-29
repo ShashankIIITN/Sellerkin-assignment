@@ -1,10 +1,15 @@
 import './App.css';
 import { useState } from 'react';
-import Loader from './Loader';
+
+import { Routes, Route } from "react-router-dom";
+import Task1 from './Task1';
+import Task2 from './Task2/Task2';
+import NavBar from './Task2/NavBar';
 
 const url = process.env.REACT_APP_URL || "http://localhost:3001";
 
 function App() {
+  const [type, settype] = useState(1);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isSending, setisSending] = useState(false)
@@ -15,7 +20,7 @@ function App() {
     setisSending(true);
 
     try {
-      const data = await fetch(`${url}/send_mail`, {
+      const data = await fetch(`${url}send_mail`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,40 +41,23 @@ function App() {
     } catch (err) {
       console.log(err);
       alert(err);
-    }finally{
+    } finally {
       setisSending(false);
     }
 
   };
 
   return (
-    <div className="App">
-      <form onSubmit={handleSubmit} >
+    <>
+      <NavBar type={type} settype = {settype} />
+      <div className="App">
+        <Routes>
+          <Route path='/' element={<Task1 name={name} email={email} setName={setName} setEmail={setEmail} isSending={isSending} setisSending={setisSending} handleSubmit={handleSubmit} />}></Route>
+          <Route path='/task2' element={<Task2 name={name} email={email} setName={setName} setEmail={setEmail} isSending={isSending} setisSending={setisSending} handleSubmit={handleSubmit} />}></Route>
+        </Routes>
 
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-
-        <label htmlFor="email">Email ID:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-
-        <button type="submit" >
-          Submit
-        </button>
-      {isSending && <Loader />}
-      </form>
-    </div>
+      </div>
+    </>
   );
 }
 
