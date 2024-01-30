@@ -48,7 +48,7 @@ function Task2() {
     }
 
     const handleSort = async () => {
-       
+
         document.querySelector(".slidedown").classList.toggle("show");
         await fetchData(search, filter, sort);
     }
@@ -57,7 +57,7 @@ function Task2() {
 
         if (search.trim() == "") return;
         await fetchData(search).then(res => {
-             document.querySelector(".list_heading").textContent = "Search Results for " + search;
+            document.querySelector(".list_heading").textContent = "Search Results for " + search;
         }).catch(err => console.log(err));
     }
 
@@ -85,7 +85,7 @@ function Task2() {
             }
         }).then(response => {
 
-            
+
             setdata(response.data);
             console.log(response.data.message);
             setisfetching(false)
@@ -107,13 +107,12 @@ function Task2() {
         }
     }
 
-    const handleClear = () =>{
+    const handleClear = () => {
         setfilter({});
         setsort({});
         setsearch("");
         fetchData();
-        if(document.querySelector(".slidedown").classList.contains("show"))
-        {
+        if (document.querySelector(".slidedown").classList.contains("show")) {
             document.querySelector(".slidedown").classList.remove("show");
 
         }
@@ -146,8 +145,14 @@ function Task2() {
 
                             <h3><pre>{el.title}</pre></h3>
                             {/* <p><pre>{el.description.slice(0, 256).replace("&#39;", "'")}</pre></p> */}
-                            <h4>Price({el.price.currency_code}):  <span >{el.price.amount / el.price.divisor}</span></h4>
+                            {el.materials.length !== 0 && <p className='tags'>Materials: {el.materials.slice(0,5).map((ee,ind)=>{
+                                return <span>{ee + (ind != Math.min(4,el.materials.length-1)? ", ": "")}</span>
+                            })}</p>}
+                            {el.tags.length !== 0 &&<p className='tags pb-10'>Tags: {el.tags.slice(0,5).map((ee, ind)=>{
+                                return <span>{ee + (ind != Math.min(4,el.tags.length-1)? ", ": "")}</span>
+                            })}</p>}
                         </div>
+                            <h4><span >Price({el.price.currency_code}):  {el.price.amount / el.price.divisor}</span> <span className='likes'><span ><i class="fa-solid fa-heart"></i>{el.num_favorers}</span><span><i class="fa-regular fa-eye"></i> {el.views}</span></span></h4>
                     </div>
                 })}
             </div>}
