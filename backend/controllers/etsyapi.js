@@ -20,7 +20,7 @@ const getimages = async (id, etsyapikey) => {
 
         return data.data;
     } catch (error) {
-        // console.log("sadas");
+        console.log(error);
         throw Error(error);
     }
 }
@@ -28,26 +28,25 @@ const getimages = async (id, etsyapikey) => {
 router.get("/all/:offset", async (req, res) => {
 
     try {
-        const data = await axios.get(`${url}listings/active?offset=${req.params.offset? req.params.offset : 0}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'x-api-key': req.headers["x-api-key"]
-            }
+        // const data = await axios.get(`${url}listings/active?offset=${req.params.offset ? req.params.offset : 0}${req.query.search !== ""  ? "&keywords=" + req.query.search : ""}${req.query.tags ? "&tags=" + req.query.tags : ""}${req.query.shop_location ? "&shop_location=" + req.query.shop_location : ""}${req.query.sort_on ? "&sort_on=" + req.query.sort_on : ""}${req.query.sort_order ? "&sort_order=" + req.query.sort_order : ""}${req.query.min_price ? "&min_price=" + req.query.min_price : ""}${req.query.max_price ? "&max_price=" + req.query.max_price : ""}`, {
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'x-api-key': req.headers["x-api-key"]
+        //     }
 
-        })
+        // })
 
-
-        console.log("asd")
+        // console.log("asd")
         let jsonbe = [];
 
-        for (let index = 0; index < data.data.results.length; index++) {
-            const element = data.data.results[index];
+        // for (let index = 0; index < data.data.results.length; index++) {
+        //     const element = data.data.results[index];
 
-            jsonbe.push(await getimages(element.listing_id, req.headers["x-api-key"]));
-            
-        }
+        //     jsonbe.push(await getimages(element.listing_id, req.headers["x-api-key"]));
 
-        // console.log(data);
+        // }
+
+        console.log(`${url}listings/active?offset=${req.params.offset ? req.params.offset : 0}${req.query.search !== ""  ? "&keywords=" + req.query.search : ""}${req.query.tags ? "&tags=" + req.query.tags : ""}${req.query.shop_location ? "&shop_location=" + req.query.shop_location : ""}${req.query.sort_on ? "&sort_on=" + req.query.sort_on : ""}${req.query.sort_order ? "&sort_order=" + req.query.sort_order : ""}${req.query.min_price ? "&min_price=" + req.query.min_price : ""}${req.query.max_price ? "&max_price=" + req.query.max_price : ""}`);
 
         res.status(200).json({ data: data.data, imgdata: jsonbe });
     } catch (error) {

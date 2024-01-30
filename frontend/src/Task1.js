@@ -3,7 +3,7 @@ import Loader from './Loader';
 
 function Task1({ name, setName, email, setEmail, isSending, handleSubmit }) {
     return (
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit} className='task1form'>
 
             <label htmlFor="name">Name:</label>
             <input

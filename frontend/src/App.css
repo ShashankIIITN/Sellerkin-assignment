@@ -13,7 +13,7 @@ body{
   overflow-y: auto;
 }
 
-.App form{
+.App .task1form{
   position: relative;
   box-shadow: 0px 0px 10px black;
   border-radius: 10%;
@@ -27,12 +27,12 @@ body{
   min-width: 250px;
   background-color: rgba(149, 143, 203, 0.338);
 }
-.App form label{
+.App .task1form label{
  align-self: flex-start;
  font-size: x-large;
  color: wheat;
 }
-.App form input{
+.App .task1form input{
  align-self: flex-start;
  font-size: 1.2rem;
  border-radius: 10px;
@@ -42,7 +42,7 @@ body{
  color: rgb(250, 205, 150);
  background-color: grey;
 }
-.App form button{
+.App .task1form button{
  font-size: x-large;
  cursor: pointer;
  margin-bottom: 5%;
@@ -50,7 +50,7 @@ body{
  background-color: rgba(176, 181, 101, 0.574);
  padding: 0% 5%;
 }
-.App form button:hover{
+.App .task1form button:hover{
 
  background-color: rgb(176, 181, 101);
 

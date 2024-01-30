@@ -1,6 +1,7 @@
 .searchboxfilter {
     display: flex;
     align-items: center;
+    position: relative;
     justify-content: center;
     min-height:3rem;
     width: 50%;
@@ -18,14 +19,14 @@
         cursor: pointer;
     }
 
-    :hover {
-        text-decoration-line: underline;
-        color: rgb(78, 82, 80);
-    }
-
     #search {
         height: 60%;
         width: 70%;
         
     }
+}
+
+.searchboxfilter button:hover {
+    text-decoration-line: underline;
+    color: rgb(78, 82, 80);
 }
