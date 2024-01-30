@@ -85,11 +85,13 @@ function Task2() {
             }
         }).then(response => {
 
+            
             setdata(response.data);
-            console.log(response.data);
+            console.log(response.data.message);
             setisfetching(false)
         }).catch(err => {
             console.log(err)
+            alert(err.response.data.message);
             setisfetching(false)
         })
         console.log(page);
@@ -108,6 +110,7 @@ function Task2() {
     const handleClear = () =>{
         setfilter({});
         setsort({});
+        setsearch("");
         fetchData();
         if(document.querySelector(".slidedown").classList.contains("show"))
         {
